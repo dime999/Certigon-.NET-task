@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Certigon_Task_API.Model;
 
 namespace Certigon_Task_API
 {
@@ -27,6 +29,8 @@ namespace Certigon_Task_API
         public void ConfigureServices(IServiceCollection services)
         {
 
+
+            services.AddDbContext<AppDbContext>(option => option.UseInMemoryDatabase(Configuration.GetConnectionString("Db")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -54,6 +58,24 @@ namespace Certigon_Task_API
             {
                 endpoints.MapControllers();
             });
+            var scope = app.ApplicationServices.CreateScope();
+            var context = scope.ServiceProvider.GetService<AppDbContext>();
+            SeedData(context);
+        }
+
+        public static void SeedData(AppDbContext context)
+        {
+           Department dep1 = new Department { Id = 1,Name="Development" };
+           Department dep2 = new Department { Id = 2,Name="Menagment" };
+           Department dep3 = new Department { Id = 3,Name="HR" };
+
+        
+
+            context.Departments.Add(dep1);
+            context.Departments.Add(dep2);
+            context.Departments.Add(dep3); 
+            
+            context.SaveChanges();  
         }
     }
 }
