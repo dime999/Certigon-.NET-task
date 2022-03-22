@@ -30,17 +30,19 @@ namespace Certigon_Task_API.Controllers
             return _context.Employees.SingleOrDefault(x=>x.Id== id);
         }
 
+        
 
-        [HttpGet("{true|false:bool} ")]
+
+        [HttpGet("{true|false:bool}")]
         public List<Employee> GetActiveEmployees(bool active)
         {
             if (active == true)
             {
-                return _context.Employees.Where(x => x.Active == active).ToList();
+                return _context.Employees.Where(x => x.Active == true).ToList();
             }
             else
             {
-                return _context.Employees.Where(x => x.Active == active).ToList();
+                return _context.Employees.Where(x => x.Active == false).ToList();
             }
         }
 
@@ -64,6 +66,20 @@ namespace Certigon_Task_API.Controllers
             _context.Employees.Add(e);
             _context.SaveChanges();
             return Created("api/employees/"+e.Id, e);
+        }
+
+        [HttpGet("/department/{departmentId:int}/employees")]
+        public List<Employee> GetDepartmentsEmployees(int id,bool active)
+        {
+            if (active == true)
+            {
+                return _context.Employees.Where(x => x.DepardmentId == id && x.Active==true).ToList();
+
+            }
+            else
+            {
+                return _context.Employees.Where(x => x.DepardmentId == id && x.Active == false).ToList();
+            }
         }
 
 
@@ -97,7 +113,12 @@ namespace Certigon_Task_API.Controllers
                 e.Salary = employee.Salary;
             }
 
-             e.Active= employee.Active;
+            if (employee.DepardmentId != 0)
+            {
+                e.DepardmentId = employee.DepardmentId;
+            }
+
+            e.Active= employee.Active;
 
             _context.Update(e);
             _context.SaveChanges();

@@ -23,5 +23,8 @@ namespace Certigon_Task_API.Controllers
         {
             return _context.Departments.ToList();
         }
+
+
+       
     }
 }
