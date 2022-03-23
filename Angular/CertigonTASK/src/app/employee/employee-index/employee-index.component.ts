@@ -40,6 +40,8 @@ export class EmployeeIndexComponent implements OnInit {
     }
   }
 
+ 
+
 
   
   delete(id: number){

@@ -32,4 +32,31 @@ export class EmployeeService {
 
 
   }
+
+  edit(id:number,e:employeeCreationDTO){
+    return this.http.put((`${this.apiURL}/${id}`),e);
+
+  }
+
+  active(): Observable<any>{
+    return this.http.get<employeeDTO[]>(this.apiURL+`/true?active=true`);
+  }
+  inactive(): Observable<any>{
+    return this.http.get<employeeDTO[]>(this.apiURL+`/false?active=false`);
+  }
+
+  hr(): Observable<any>{
+    return this.http.get<employeeDTO[]>('https://localhost:44374/department/3/employees?id=3');
+
+  }
+  development(): Observable<any>{
+    return this.http.get<employeeDTO[]>('https://localhost:44374/department/1/employees?id=1');
+
+  }
+  menagment(): Observable<any>{
+    return this.http.get<employeeDTO[]>('https://localhost:44374/department/2/employees?id=2');
+
+  }
+
+ 
 }

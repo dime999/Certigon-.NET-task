@@ -79,7 +79,7 @@ namespace Certigon_Task_API
 
             Employee emp1 = new Employee { Id = 1, Name = "Adem", Age = 20, Gender = "Male", Salary = 1000, Active = false, DepardmentId = 1 };
             Employee emp2 = new Employee { Id = 2, Name = "Edhem", Age = 30, Gender = "Male", Salary = 5000, Active = true, DepardmentId = 2 };
-            Employee emp3 = new Employee { Id = 3, Name = "Amila", Age = 20, Gender = "Male", Salary = 1000, Active = true, DepardmentId = 3 };
+            Employee emp3 = new Employee { Id = 3, Name = "Amila", Age = 20, Gender = "Female", Salary = 1000, Active = true, DepardmentId = 3 };
 
 
 

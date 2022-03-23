@@ -1,23 +1,6 @@
+<h2 >Development Employees</h2>
 
 
-
-
-<div style="position:relative; left:350px;top: 43px;">
-    <button mat-flat-button color="accent" style="margin: 5px;" routerLink="/department/hr">HR</button>
-    <button mat-flat-button color="primary" style="margin: 5px;" routerLink="/department/development">Development</button>
-    <button mat-flat-button color="warn" style="margin: 5px;" routerLink="/department/menagment">Menagment</button>
-
-</div>
-
-<button mat-flat-button color="primary" routerLink="/employee/add">Create new</button>
-
-
-
-<div style="position:relative; left:850px;bottom: 36px;">
-    <button mat-flat-button color="primary" style="margin: 5px;" routerLink="/employee/active">Active employees</button>
-    <button mat-flat-button color="warn" routerLink="/employee/inactive">Inactive employees</button>
-
-</div>
 
 <app-generic-list [list]="employee">
     <ng-container content>
@@ -53,27 +36,7 @@
             </ng-container>
 
           
-           
-            <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef class="slova">Actions</th>
-                <td mat-cell *matCellDef="let element">
-                    <a
-                        routerLink="/employee/edit/{{element.id}}"
-                        mat-flat-button color="primary"
-                    >
-                    Edit
-                    </a>
-                    <button mat-flat-button color="warn" 
-                    [swal]="{
-                        title: 'Confirmation',
-                        text: 'Are you sure that you want to delete this employee?',
-                        showCancelButton: true
-                    }"
-                    (confirm)="delete(element.id)">
-                        Delete
-                    </button>
-                </td>
-            </ng-container>
+         
 
             <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
             <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>

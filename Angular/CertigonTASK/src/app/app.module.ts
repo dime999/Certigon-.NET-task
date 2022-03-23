@@ -32,7 +32,12 @@ import { EmployeeIndexComponent } from './employee/employee-index/employee-index
 import { EmployeeAddComponent } from './employee/employee-add/employee-add.component';
 import { EmployeeFormComponent } from './employee/employee-form/employee-form.component';
 import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
-import { GenericListComponent } from './utilities/generic-list/generic-list.component'
+import { GenericListComponent } from './utilities/generic-list/generic-list.component';
+import { EmployeeActiveComponent } from './employee/employee-active/employee-active.component';
+import { EmployeeInactiveComponent } from './employee/employee-inactive/employee-inactive.component';
+import { DepartmentHrComponent } from './department/department-hr/department-hr.component';
+import { DepartmentDevelopmentComponent } from './department/department-development/department-development.component';
+import { DepartmentMenagmentComponent } from './department/department-menagment/department-menagment.component'
 
 
 @NgModule({
@@ -43,7 +48,12 @@ import { GenericListComponent } from './utilities/generic-list/generic-list.comp
     EmployeeAddComponent,
     EmployeeFormComponent,
     EmployeeEditComponent,
-    GenericListComponent
+    GenericListComponent,
+    EmployeeActiveComponent,
+    EmployeeInactiveComponent,
+    DepartmentHrComponent,
+    DepartmentDevelopmentComponent,
+    DepartmentMenagmentComponent
   ],
   imports: [
     BrowserModule,

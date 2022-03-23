@@ -52,11 +52,11 @@ namespace Certigon_Task_API.Controllers
         {
             if (active == true)
             {
-                 return Ok(_context.Employees.Where(x => x.Active == true).ToList());
+                 return Ok(_context.Employees.Include(x=>x.Department).Where(x => x.Active == true).ToList());
             }
             else
             {
-                return Ok(_context.Employees.Where(x => x.Active == false).ToList());
+                return Ok(_context.Employees.Include(x=>x.Department).Where(x => x.Active == false).ToList());
             }
         }
 
@@ -131,22 +131,19 @@ namespace Certigon_Task_API.Controllers
         //}
 
         [HttpGet("/department/{departmentId:int}/employees")]
-        public ActionResult<List<Employee>> GetDepartmentsEmployees(int id,bool active)
+        public ActionResult<List<Employee>> GetDepartmentsEmployees(int id)
         {
-            if (active == true)
-            {
-                return Ok(_context.Employees.Where(x => x.DepardmentId == id && x.Active==true).ToList());
+            
+                return Ok(_context.Employees.Include(x=>x.Department).Where(x => x.DepardmentId == id).ToList());
 
-            }
-            else
-            {
-                return Ok(_context.Employees.Where(x => x.DepardmentId == id && x.Active == false).ToList());
-            }
+           
+             
+          
         }
 
 
         [HttpPut("{id}")]
-        public ActionResult Update(int id,Employee employee)
+        public ActionResult Update(int id,EmployeeAdd employee)
         {
             var e = _context.Employees.SingleOrDefault(x => x.Id == id);
 
