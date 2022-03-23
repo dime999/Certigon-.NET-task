@@ -1,8 +1,13 @@
 ﻿using Certigon_Task_API.Model;
+using Certigon_Task_API.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Certigon_Task_API.Controllers
 {
@@ -12,79 +17,106 @@ namespace Certigon_Task_API.Controllers
     {
 
         private readonly AppDbContext _context;
+        private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(AppDbContext context)
+
+        public EmployeeController(AppDbContext context,ILogger<EmployeeController>logger)
         {
             this._context = context;
+            this._logger = logger;
         }
 
         [HttpGet]
-        public List<Employee> GetEmployees()
+        public ActionResult<List<Employee>> GetAll()
         {
-            return _context.Employees.ToList();
+            var data = _context.Employees
+                .Include(s => s.Department)
+                .OrderByDescending(s => s.Id)
+                .AsQueryable();
+            return data.Take(100).ToList();
         }
 
         [HttpGet("{id}")]
-        public Employee GetEmployeeById(int id)
+        public ActionResult GetEmployeeById(int id)
         {
-            return _context.Employees.SingleOrDefault(x=>x.Id== id);
+            _logger.LogInformation("GetEmployeeById: {id}", id);
+            return Ok(_context.Employees.Include(e => e.Department).FirstOrDefault(s => s.Id == id));
+
         }
 
-        
 
 
-        [HttpGet("{true|false:bool}")]
-        public List<Employee> GetActiveEmployees(bool active)
+
+            [HttpGet("{true|false:bool}")]
+        public ActionResult<List<Employee>> GetActiveEmployees(bool active)
         {
             if (active == true)
             {
-                return _context.Employees.Where(x => x.Active == true).ToList();
+                 return Ok(_context.Employees.Where(x => x.Active == true).ToList());
             }
             else
             {
-                return _context.Employees.Where(x => x.Active == false).ToList();
+                return Ok(_context.Employees.Where(x => x.Active == false).ToList());
             }
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public ActionResult Delete(int id)
         {
-            var e = _context.Employees.SingleOrDefault(x=> x.Id==id);
+            
 
-            if(e==null)
-            {
+               
+                var e = _context.Employees.SingleOrDefault(x => x.Id == id);
+
+                if (e == null)
+                {
+                _logger.LogInformation("Wrong ID: {id}",id);
                 return NotFound("Wrong ID");
-            }
-            _context.Employees.Remove(e);
-            _context.SaveChanges();
-            return Ok("Employee deleted");
+                }
+                _context.Employees.Remove(e);
+                _context.SaveChanges();
+                _logger.LogInformation("Delete");
+                _logger.LogInformation("DeleteEmployeById: {id}", id);
+                return Ok("Employee deleted");
+
+           
+           
         }
 
         [HttpPost]
-        public IActionResult AddEmployee(Employee e)
+        public ActionResult AddEmployee(EmployeeAdd e)
         {
-            _context.Employees.Add(e);
+            Employee em = new Employee
+            {
+                Name = e.Name,
+                Gender = e.Gender,
+                Salary = e.Salary,
+                Active = e.Active,
+                Age=e.Age,
+                DepardmentId = e.DepardmentId,
+            };
+            _context.Employees.Add(em);
             _context.SaveChanges();
-            return Created("api/employees/"+e.Id, e);
+           return GetEmployeeById(em.Id);
         }
 
         [HttpGet("/department/{departmentId:int}/employees")]
-        public List<Employee> GetDepartmentsEmployees(int id,bool active)
+        public ActionResult<List<Employee>> GetDepartmentsEmployees(int id,bool active)
         {
             if (active == true)
             {
-                return _context.Employees.Where(x => x.DepardmentId == id && x.Active==true).ToList();
+                return Ok(_context.Employees.Where(x => x.DepardmentId == id && x.Active==true).ToList());
 
             }
             else
             {
-                return _context.Employees.Where(x => x.DepardmentId == id && x.Active == false).ToList();
+                return Ok(_context.Employees.Where(x => x.DepardmentId == id && x.Active == false).ToList());
             }
         }
 
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id,Employee employee)
+        public ActionResult Update(int id,Employee employee)
         {
             var e = _context.Employees.SingleOrDefault(x => x.Id == id);
 
@@ -125,6 +157,8 @@ namespace Certigon_Task_API.Controllers
             return Ok("Employee is updated!");
 
         }
+
+       
 
 
     }

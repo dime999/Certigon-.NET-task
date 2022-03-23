@@ -28,7 +28,14 @@ namespace Certigon_Task_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    var frontendURL = Configuration.GetValue<string>("frontend_url");
+                    builder.WithOrigins(frontendURL).AllowAnyMethod().AllowAnyHeader();
+                });
+            });
 
             services.AddDbContext<AppDbContext>(option => option.UseInMemoryDatabase(Configuration.GetConnectionString("Db")));
             services.AddControllers();
@@ -51,6 +58,7 @@ namespace Certigon_Task_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 
@@ -69,12 +77,22 @@ namespace Certigon_Task_API
            Department dep2 = new Department { Id = 2,Name="Menagment" };
            Department dep3 = new Department { Id = 3,Name="HR" };
 
-        
+            Employee emp1 = new Employee { Id = 1, Name = "Adem", Age = 20, Gender = "Male", Salary = 1000, Active = false, DepardmentId = 1 };
+            Employee emp2 = new Employee { Id = 2, Name = "Edhem", Age = 30, Gender = "Male", Salary = 5000, Active = true, DepardmentId = 2 };
+            Employee emp3 = new Employee { Id = 3, Name = "Amila", Age = 20, Gender = "Male", Salary = 1000, Active = true, DepardmentId = 3 };
+
+
+
+
 
             context.Departments.Add(dep1);
             context.Departments.Add(dep2);
-            context.Departments.Add(dep3); 
-            
+            context.Departments.Add(dep3);
+
+            context.Employees.Add(emp1);
+            context.Employees.Add(emp2);
+            context.Employees.Add(emp3);
+
             context.SaveChanges();  
         }
     }

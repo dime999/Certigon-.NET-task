@@ -1,0 +1,68 @@
+<h2 >Employees</h2>
+
+<button mat-flat-button color="primary" routerLink="/employee/add">Create new</button>
+
+<app-generic-list [list]="employee">
+    <ng-container content>
+        <table mat-table [dataSource]="employee" class="mat-elevation-z8 table-index">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="slova">Name</th>
+                <td mat-cell *matCellDef="let element" class="slova">{{element.name}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="gender">
+                <th mat-header-cell *matHeaderCellDef class="slova">Gender</th>
+                <td mat-cell *matCellDef="let element" class="slova">{{element.gender}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="age">
+                <th mat-header-cell *matHeaderCellDef class="slova">Age</th>
+                <td mat-cell *matCellDef="let element" class="slova">{{element.age}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="salary">
+                <th mat-header-cell *matHeaderCellDef class="slova">Salary</th>
+                <td mat-cell *matCellDef="let element" class="slova">{{element.salary}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="active">
+                <th mat-header-cell *matHeaderCellDef class="slova">Active</th>
+                <td mat-cell *matCellDef="let element" class="slova">{{element.active}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="department">
+                <th mat-header-cell *matHeaderCellDef class="slova">Department</th>
+                <td mat-cell *matCellDef="let element" class="slova">{{element.department.name}}</td>
+            </ng-container>
+
+          
+           
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef class="slova">Actions</th>
+                <td mat-cell *matCellDef="let element">
+                    <a
+                        routerLink="/employee/edit/{{element.id}}"
+                        mat-flat-button color="primary"
+                    >
+                    Edit
+                    </a>
+                    <button mat-flat-button color="warn" 
+                    [swal]="{
+                        title: 'Confirmation',
+                        text: 'Are you sure that you want to delete this employee?',
+                        showCancelButton: true
+                    }"
+                    (confirm)="delete(element.id)">
+                        Delete
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+        </table>
+
+      
+
+    </ng-container>
+</app-generic-list>
