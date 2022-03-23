@@ -84,7 +84,7 @@ namespace Certigon_Task_API.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddEmployee(EmployeeAdd e)
+        public ActionResult<Employee> AddEmployee([FromBody] EmployeeAdd e)
         {
             Employee em = new Employee
             {
@@ -97,7 +97,7 @@ namespace Certigon_Task_API.Controllers
             };
             _context.Employees.Add(em);
             _context.SaveChanges();
-           return GetEmployeeById(em.Id);
+            return em;
         }
 
         [HttpGet("/department/{departmentId:int}/employees")]

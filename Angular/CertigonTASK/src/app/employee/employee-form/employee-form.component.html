@@ -1,1 +1,48 @@
-<p>employee-form works!</p>
+<form (submit)="saveChanges()" [formGroup]="form">
+    <mat-form-field appearance="outline">
+        <mat-label>Name*</mat-label>
+        <input formControlName="name" matInput />
+        <mat-error>The name field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Gender*</mat-label>
+        <input formControlName="gender" matInput />
+        <mat-error>The name field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Age*</mat-label>
+        <input formControlName="age" matInput />
+        <mat-error>The name field is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Salary*</mat-label>
+        <input formControlName="salary" matInput />
+        <mat-error>The name field is required</mat-error>
+    </mat-form-field>
+
+    <div class="check">
+        <mat-checkbox formControlName="active">Active</mat-checkbox>
+    </div>
+   
+
+    <mat-form-field appearance="fill">
+        <mat-label>Select department</mat-label>
+        <mat-select formControlName="departmentId">
+          <mat-option *ngFor="let x of departments" value="{{x.id}}">{{x.name}}</mat-option>
+          
+        </mat-select>
+      </mat-form-field>
+
+
+
+
+   
+
+    <div>
+        <button mat-flat-button color="primary" [disabled]="form.invalid">Save Changes</button>
+        <a mat-stroked-button routerLink="/employee">Cancel</a>
+    </div>
+</form>

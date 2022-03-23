@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2'
-
+import{FormsModule} from'@angular/forms';
+import{ReactiveFormsModule} from'@angular/forms';
 
 
 
@@ -65,7 +66,9 @@ import { GenericListComponent } from './utilities/generic-list/generic-list.comp
     MatPaginatorModule,
     MatChipsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
