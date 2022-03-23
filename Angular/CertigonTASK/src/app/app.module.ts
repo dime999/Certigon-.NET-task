@@ -34,6 +34,7 @@ import { EmployeeFormComponent } from './employee/employee-form/employee-form.co
 import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
 import { GenericListComponent } from './utilities/generic-list/generic-list.component'
 
+
 @NgModule({
   declarations: [
     AppComponent,

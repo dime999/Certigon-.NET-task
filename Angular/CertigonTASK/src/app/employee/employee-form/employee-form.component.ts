@@ -12,6 +12,7 @@ export class EmployeeFormComponent implements OnInit {
 
   departments:any;
   form!: FormGroup;
+  
 
   constructor(private service:DepartmentService,private formBuilder: FormBuilder) { }
 
@@ -45,6 +46,8 @@ export class EmployeeFormComponent implements OnInit {
     
     this.onSaveChanges.emit(this.form.value);
   }
+
+ 
 
   getErrorMessageFieldName()
   {

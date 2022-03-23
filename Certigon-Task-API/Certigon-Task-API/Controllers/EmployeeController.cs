@@ -92,13 +92,43 @@ namespace Certigon_Task_API.Controllers
                 Gender = e.Gender,
                 Salary = e.Salary,
                 Active = e.Active,
-                Age=e.Age,
+                Age = e.Age,
                 DepardmentId = e.DepardmentId,
             };
             _context.Employees.Add(em);
             _context.SaveChanges();
             return em;
         }
+
+        //[HttpPost("{id}")]
+        //public ActionResult Update(int id, [FromBody] EmployeeAdd x)
+        //{
+
+
+        //    Employee employee;
+
+        //    if (id == 0)
+        //    {
+        //        employee = new Employee();
+        //        _context.Add(employee);
+        //    }
+        //    else
+        //    {
+        //        employee = _context.Employees.Include(s => s.Department).FirstOrDefault(s => s.Id == id);
+        //        if (employee == null)
+        //            return BadRequest("pogresan ID");
+        //    }
+
+        //    employee.Name = x.Name;
+        //    employee.Gender = x.Gender;
+        //    employee.Age = x.Age;
+        //    employee.Salary = x.Salary;
+        //    employee.Active = x.Active;
+        //    employee.DepardmentId = x.DepardmentId;
+
+        //    _context.SaveChanges();
+        //    return GetEmployeeById(employee.Id);
+        //}
 
         [HttpGet("/department/{departmentId:int}/employees")]
         public ActionResult<List<Employee>> GetDepartmentsEmployees(int id,bool active)

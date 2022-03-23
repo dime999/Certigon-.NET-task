@@ -13,6 +13,7 @@ export class EmployeeIndexComponent implements OnInit {
   constructor(private service:EmployeeService,private router:Router) { }
   employee!: employeeDTO[];
   columnsToDisplay = ['name','gender','age','salary','active','department','actions'];
+  chossenEmployee:any=null;
  
 
   ngOnInit(): void {
@@ -26,6 +27,18 @@ export class EmployeeIndexComponent implements OnInit {
    
   }
 
+
+  btnNew() {
+    this.chossenEmployee = {
+      show:true,
+      id:0,
+      name :"",
+      gender:"",
+      age: 20,
+      salary:  1000,
+      departmentId: 1,
+    }
+  }
 
 
   

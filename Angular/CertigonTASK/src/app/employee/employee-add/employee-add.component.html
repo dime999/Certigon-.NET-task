@@ -1,3 +1,48 @@
 <h2>Add employee</h2>
 
 <app-employee-form (onSaveChanges)="saveChanges($event)"></app-employee-form>
+
+
+<!--<div *ngIf="this.editEmployee!=null && this.editEmployee.show" class="sve"  id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLiveLabel">Employee</h2>
+          <button type="button" class="btn-close"  aria-label="Close" (click)=" this.editEmployee.show=false"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input class="form-control" [(ngModel)]="editEmployee.name"  placeholder="Name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <input class="form-control" [(ngModel)]="editEmployee.gender"  placeholder="Male">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Salary</label>
+            <input class="form-control" [(ngModel)]="editEmployee.salary"  placeholder="1800">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input class="form-control" [(ngModel)]="editEmployee.age"  placeholder="25">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Active</label>
+            <input   type="checkbox" class="form-check-input" [(ngModel)]="editEmployee.active"  placeholder="active" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Department</label>
+            <select class="form-control" [(ngModel)]="editEmployee.departmentId" >
+                <option *ngFor="let x of departments" value="{{x.id}}">{{x.name}}</option>
+              </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)=" this.editEmployee.show=false">Close</button>
+          <button type="button" class="btn btn-primary" (click)="saveChanges()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>-->
+  

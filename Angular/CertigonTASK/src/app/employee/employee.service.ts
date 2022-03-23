@@ -26,7 +26,7 @@ export class EmployeeService {
     return this.http.delete(`${this.apiURL}/${id}`);
   }
 
-  create(e: employeeCreationDTO){
+  create(e:employeeCreationDTO){
    
     return this.http.post(this.apiURL,e)
 
