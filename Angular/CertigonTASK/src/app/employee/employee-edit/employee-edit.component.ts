@@ -26,8 +26,9 @@ export class EmployeeEditComponent implements OnInit {
   saveChanges(e:employeeCreationDTO)
   {
     this.service.edit(this.model.id,e).subscribe(()=>{
-      this.router.navigate([""]);
-    })
+    
+    });
+    this.router.navigate([""]);
   }
 
 }
