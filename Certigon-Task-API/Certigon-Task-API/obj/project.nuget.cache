@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "3bBnIF1/p9DLp0B7Tc7kJSqWr3PYULquaNHp69drylFh0k1NGguP94nqgUIVsvvKo7qqAKErVGnHm8kHNEq7lg==",
+  "dgSpecHash": "l28ummIB7je92EhfcfJuTa/sUZ0xhAFdEdwsnY1S9hshlzMcVUxXZEzceSGCGi35jy4oqIOvqiOimJ+WGS0blQ==",
   "success": true,
   "projectFilePath": "G:\\Users\\dime\\Documents\\Certigon-.NET-task\\Certigon-Task-API\\Certigon-Task-API\\Certigon-Task-API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dime\\.nuget\\packages\\json.net\\1.0.33\\json.net.1.0.33.nupkg.sha512",
     "C:\\Users\\dime\\.nuget\\packages\\microsoft.entityframeworkcore\\5.0.15\\microsoft.entityframeworkcore.5.0.15.nupkg.sha512",
     "C:\\Users\\dime\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.15\\microsoft.entityframeworkcore.abstractions.5.0.15.nupkg.sha512",
     "C:\\Users\\dime\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.15\\microsoft.entityframeworkcore.analyzers.5.0.15.nupkg.sha512",

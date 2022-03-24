@@ -131,10 +131,10 @@ namespace Certigon_Task_API.Controllers
         //}
 
         [HttpGet("/department/{departmentId:int}/employees")]
-        public ActionResult<List<Employee>> GetDepartmentsEmployees(int id)
+        public ActionResult<List<Employee>> GetDepartmentsEmployees(int id,bool active)
         {
             
-                return Ok(_context.Employees.Include(x=>x.Department).Where(x => x.DepardmentId == id).ToList());
+                return Ok(_context.Employees.Include(x=>x.Department).Where(x => x.DepardmentId == id && x.Active==active).ToList());
 
            
              

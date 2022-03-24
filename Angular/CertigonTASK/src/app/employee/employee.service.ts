@@ -45,16 +45,16 @@ export class EmployeeService {
     return this.http.get<employeeDTO[]>(this.apiURL+`/false?active=false`);
   }
 
-  hr(): Observable<any>{
-    return this.http.get<employeeDTO[]>('https://localhost:44374/department/3/employees?id=3');
+  hr(active:boolean): Observable<any>{
+    return this.http.get<employeeDTO[]>(`https://localhost:44374/department/3/employees?id=3&active=${active}`);
 
   }
-  development(): Observable<any>{
-    return this.http.get<employeeDTO[]>('https://localhost:44374/department/1/employees?id=1');
+  development(active:boolean): Observable<any>{
+    return this.http.get<employeeDTO[]>(`https://localhost:44374/department/1/employees?id=1&active=${active}`);
 
   }
-  menagment(): Observable<any>{
-    return this.http.get<employeeDTO[]>('https://localhost:44374/department/2/employees?id=2');
+  menagment(active:boolean): Observable<any>{
+    return this.http.get<employeeDTO[]>(`https://localhost:44374/department/2/employees?id=2&active=${active}`);
 
   }
 

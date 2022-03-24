@@ -12,14 +12,24 @@ export class DepartmentDevelopmentComponent implements OnInit {
   constructor(private service:EmployeeService) { }
 
   employee!:employeeDTO[];
+  active:boolean=true;
   columnsToDisplay = ['name','gender','age','salary','active','department'];
   ngOnInit(): void {
     this.LoadData();
   }
 
   LoadData(){
-    this.service.development().subscribe((x:any)=>{
+    this.service.development(this.active).subscribe((x:any)=>{
       this.employee=x;
     });
+  }
+
+  Active(){
+    this.active=true;
+    this.LoadData();
+  }
+  Inactive(){
+    this.active=false;
+    this.LoadData();
   }
 }

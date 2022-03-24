@@ -27,10 +27,10 @@ export class EmployeeFormComponent implements OnInit {
       name: ['',{
         validators:[Validators.required, Validators.minLength(3)]
       }],
-      gender:'',
-      age:20,
+      gender:'Male',
+      age:22,
       salary:1000,
-      active:false,
+      active:true,
       depardmentId:1,
 
 

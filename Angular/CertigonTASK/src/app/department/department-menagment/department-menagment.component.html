@@ -1,5 +1,9 @@
 <h2 >Menagment Employees</h2>
 
+<button mat-flat-button color="primary" style="margin:5px" (click)="Active()" >Active employees</button>
+<button mat-flat-button color="warn"  (click)="Inactive()">Inactive employees</button>
+
+
 
 
 <app-generic-list [list]="employee">

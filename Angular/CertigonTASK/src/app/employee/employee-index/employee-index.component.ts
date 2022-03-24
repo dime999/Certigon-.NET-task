@@ -48,6 +48,7 @@ export class EmployeeIndexComponent implements OnInit {
     this.service.delete(id).subscribe(() => {
     this.loadData();
     });
+    this.router.navigate(['']);
 
   }
 
