@@ -5,6 +5,7 @@ import { DepartmentService } from 'src/app/department/department.service';
 import { environment } from 'src/environments/environment';
 import { employeeCreationDTO } from '../employee.model';
 import { EmployeeService } from '../employee.service';
+declare function porukaError(a: string): any;
 
 @Component({
   selector: 'app-employee-add',
@@ -30,8 +31,10 @@ export class EmployeeAddComponent implements OnInit {
 
   saveChanges(em: employeeCreationDTO){
     this.service.create(em).subscribe(() => {
+     
     this.router.navigate(['/employee']);
-    });
+    },
+    (err) => console.log(err.error));
   }
 
 }
